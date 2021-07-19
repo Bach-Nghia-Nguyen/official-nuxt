@@ -9,50 +9,14 @@
       </div>
 
       <ul class="decks-list">
-        <li>
-          <nuxt-link class="deck" to="/decks/1">
-            <div class="card deck-card">
-              <img
-                src="https://wallpaperbat.com/img/566655-english-class-wallpaper-png-free-english-class-wallpaperpng-transparent-image.png"
-                alt="thumbnail card"
-              />
-              <div class="card_body">
-                <h3>Title card</h3>
-                <p>Description card</p>
-              </div>
-            </div>
-          </nuxt-link>
-        </li>
-
-        <li>
-          <nuxt-link class="deck" to="/decks/2">
-            <div class="card deck-card">
-              <img
-                src="https://wallpaperbat.com/img/566655-english-class-wallpaper-png-free-english-class-wallpaperpng-transparent-image.png"
-                alt="thumbnail card"
-              />
-              <div class="card_body">
-                <h3>Title card</h3>
-                <p>Description card</p>
-              </div>
-            </div>
-          </nuxt-link>
-        </li>
-
-        <li>
-          <nuxt-link class="deck" to="/decks/3">
-            <div class="card deck-card">
-              <img
-                src="https://wallpaperbat.com/img/566655-english-class-wallpaper-png-free-english-class-wallpaperpng-transparent-image.png"
-                alt="thumbnail card"
-              />
-              <div class="card_body">
-                <h3>Title card</h3>
-                <p>Description card</p>
-              </div>
-            </div>
-          </nuxt-link>
-        </li>
+        <deck-list
+          v-for="deck in decks"
+          :id="deck._id"
+          :key="deck._id"
+          :name="deck.name"
+          :thumbnail="deck.thumbnail"
+          :description="deck.thumbnail"
+        />
       </ul>
     </div>
 
@@ -100,7 +64,42 @@
 </template>
 
 <script>
+import DeckList from '@/components/Decks/DeckList.vue'
+
 export default {
+  components: {
+    DeckList,
+  },
+  data() {
+    return {
+      decks: [
+        {
+          _id: 1,
+          name: 'Learn English',
+          description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+          thumbnail:
+            'https://wallpaperbat.com/img/566655-english-class-wallpaper-png-free-english-class-wallpaperpng-transparent-image.png',
+        },
+        {
+          _id: 2,
+          name: 'Learn Chinese',
+          description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+          thumbnail:
+            'https://wallpaperbat.com/img/566655-english-class-wallpaper-png-free-english-class-wallpaperpng-transparent-image.png',
+        },
+        {
+          _id: 3,
+          name: 'Learn Japanese',
+          description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+          thumbnail:
+            'https://wallpaperbat.com/img/566655-english-class-wallpaper-png-free-english-class-wallpaperpng-transparent-image.png',
+        },
+      ],
+    }
+  },
   methods: {
     // showDeck() {
     //   this.$router.push(`/decks/${this.deckID}`)

@@ -13,57 +13,13 @@
         <hr class="divide" />
 
         <div class="r">
-          <div class="c_3">
-            <div class="card">
-              <div class="front-card">
-                <img
-                  src="https://museums.kenosha.org/public/wp-content/uploads/sites/3/2013/11/IMG_0065.jpg"
-                  alt="thumbnail card"
-                />
-              </div>
-
-              <div class="back-card"></div>
-            </div>
-          </div>
-
-          <div class="c_3">
-            <div class="card">
-              <div class="front-card">
-                <img
-                  src="https://museums.kenosha.org/public/wp-content/uploads/sites/3/2013/11/IMG_0065.jpg"
-                  alt="thumbnail card"
-                />
-              </div>
-
-              <div class="back-card"></div>
-            </div>
-          </div>
-
-          <div class="c_3">
-            <div class="card">
-              <div class="front-card">
-                <img
-                  src="https://museums.kenosha.org/public/wp-content/uploads/sites/3/2013/11/IMG_0065.jpg"
-                  alt="thumbnail card"
-                />
-              </div>
-
-              <div class="back-card"></div>
-            </div>
-          </div>
-
-          <div class="c_3">
-            <div class="card">
-              <div class="front-card">
-                <img
-                  src="https://museums.kenosha.org/public/wp-content/uploads/sites/3/2013/11/IMG_0065.jpg"
-                  alt="thumbnail card"
-                />
-              </div>
-
-              <div class="back-card"></div>
-            </div>
-          </div>
+          <card-list
+            v-for="card in cards"
+            :id="card._id"
+            :key="card._id"
+            :picture="card.picture"
+            :keyword="card.keyword"
+          />
         </div>
       </div>
     </div>
@@ -112,11 +68,50 @@
 </template>
 
 <script>
+import CardList from '@/components/Cards/CardList.vue'
 export default {
+  components: { CardList },
   validate({ params }) {
     // check the validity of param id
     return /^[0-9]$/.test(params.id)
   },
+  data() {
+    return {
+      cards: [
+        {
+          _id: 1,
+          picture:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Road_in_Norway.jpg/1200px-Road_in_Norway.jpg',
+          keyword: 'Road',
+        },
+        {
+          _id: 2,
+          picture:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Road_in_Norway.jpg/1200px-Road_in_Norway.jpg',
+          keyword: 'Road',
+        },
+        {
+          _id: 3,
+          picture:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Road_in_Norway.jpg/1200px-Road_in_Norway.jpg',
+          keyword: 'Road',
+        },
+        {
+          _id: 4,
+          picture:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Road_in_Norway.jpg/1200px-Road_in_Norway.jpg',
+          keyword: 'Road',
+        },
+        {
+          _id: 5,
+          picture:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Road_in_Norway.jpg/1200px-Road_in_Norway.jpg',
+          keyword: 'Road',
+        },
+      ],
+    }
+  },
+
   methods: {
     openModal() {
       this.$modal.open({ name: 'CreateCardModal' })
@@ -128,7 +123,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 section {
   padding-top: 3rem;
   .card {
