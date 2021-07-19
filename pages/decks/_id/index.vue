@@ -5,7 +5,9 @@
         <h3>Deck #{{ $route.params.id }}: Learn English by Sky Albert</h3>
         <div class="tools">
           <button class="btn btn_success">Start now</button>
-          <button class="btn btn_primary">Create a card</button>
+          <button class="btn btn_primary" @click.prevent="openModal">
+            Create a card
+          </button>
         </div>
 
         <hr class="divide" />
@@ -65,6 +67,47 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal -->
+    <v-modal name="CreateCardModal">
+      <div class="modal_body">
+        <h2>Create a new Card</h2>
+        <form action="">
+          <div class="form_group">
+            <label for="">Name:</label>
+            <input
+              class="form_control"
+              type="text"
+              placeholder="Please enter name"
+            />
+          </div>
+
+          <div class="form_group">
+            <label for="">Description:</label>
+            <textarea
+              class="form_control"
+              placeholder="Please enter description"
+            />
+          </div>
+
+          <div class="form_group">
+            <label for="">Thumbnail:</label>
+            <input type="file" />
+            <div class="preview"></div>
+          </div>
+
+          <div class="form_group d_flex justify_content_end">
+            <button class="btn btn_danger" @click.prevent="closeModal">
+              Close
+            </button>
+
+            <button class="btn btn_success ml_3" @click.prevent="createDeck">
+              Create
+            </button>
+          </div>
+        </form>
+      </div>
+    </v-modal>
   </section>
 </template>
 
@@ -73,6 +116,14 @@ export default {
   validate({ params }) {
     // check the validity of param id
     return /^[0-9]$/.test(params.id)
+  },
+  methods: {
+    openModal() {
+      this.$modal.open({ name: 'CreateCardModal' })
+    },
+    closeModal() {
+      this.$modal.close({ name: 'CreateCardModal' })
+    },
   },
 }
 </script>
@@ -89,5 +140,10 @@ section {
   .divide {
     margin: 2rem 0;
   }
+}
+
+.modal_body {
+  background-color: #fff;
+  padding: 1rem;
 }
 </style>

@@ -30,8 +30,7 @@
   margin-top: 2rem;
 
   .thumbnail-banner {
-    background: url('https://previews.123rf.com/images/nataliias/nataliias1812/nataliias181200017/127109518-english-language-hand-drawn-doodles-and-lettering-education-banner-vector-illustration-.jpg')
-      center center;
+    background: url('~assets/images/english-banner.jpeg') center center;
     background-size: cover;
     height: inherit;
   }
